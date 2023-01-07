@@ -1,0 +1,109 @@
+First create Project Repository in GitHub account.
+{
+First of all, when you create the repo at GitHub, you need to decide whether it is to be completely empty or whether it should have any initial elements such as a README.
+
+I like my repo to be completely empty. In that case it has no branches at all. Everything is thus up to you at the local end. GitHub provides perfectly clear instructions as to what to do at this point. Let's say you have an existing local repo, as you have created:
+
+>> git init
+>> git add -A
+>> git commit -m "my first commit"
+
+Now your default branch is master. So you have to decide now whether to keep that or change it to main. Either way, do not push until you have made a decision!
+
+If you decide to keep it as master, then just add the remote and push :
+
+>> git remote add origin https://github.com/Hacker-BlackHATS/Car_Zone-GitProject.git
+>> git push -u origin master
+
+On the other hand if you decide you want main as your primary branch, then follow the instructions that GitHub gives you :
+
+>> git remote add origin https://github.com/Hacker-BlackHATS/Car_Zone-GitProject.git
+>> git branch -M main
+>> git push -u origin main
+
+Suppose you elect to start your GitHub repo with a Readme. Okay, so now the GitHub repo does have an initial branch, and it is main. So now once again you have two choices about what to do on your local machine: you must decide whether to start locally with an empty copy of this same GitHub repo, or whether to start locally with a repo that you may already have.
+
+If you decide to start empty locally, then do not say git init. Say git clone and clone the remote GitHub repo to your local machine. This is far and away the best choice in this situation.
+
+But let's say you don't do that. Let's say you decide create a separate local repo from scratch. For instance, you do this:
+
+ $ git init what; cd $_
+ $ echo howdy > testing.txt; git add .; git commit -minitial
+ $ git remote add origin my@repository
+Now you are in a serious mess, because:
+
+Your remote repo and your local repo both have stuff that the other doesn't have.
+
+Your local repo has master but your remote repo has main.
+
+How are you going to push this? Well, I'm going to assume that you accept the notion, imposed on you now by GitHub, that you should use main as your main branch. So here is what you do:
+
+$ git branch -M main
+$ git pull origin main --allow-unrelated
+$ git push -u origin main
+Now you have folded your remote repo and your local repo together with the same branch and the same contents.
+}
+
+In Git Bash Window with virtual environment activated :
+
+>> git init
+git is installed in E:/CarZone_Project/.git/
+
+{
+If you are using git for the first time, it may  ask you for your identity.
+LINK :
+[https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup]
+
+>> git config user.name "PROTACKER"
+git config --global user.name "PROTACKER"
+>> git config user.email "56638837+Hacker-BlackHATS@users.noreply.github.com"
+git config --global user.email "56638837+Hacker-BlackHATS@users.noreply.github.com"
+Generating SSH key
+
+>> ssh-keygen -t ed25519 -C "56638837+Hacker-BlackHATS@users.noreply.github.com"
+
+Adding SSH key to the ssh-agent
+Ensure the ssh-agent is running. Starting it manually,
+>> eval "$(ssh-agent -s)"
+Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_ed25519 in the command with the name of your private key file.
+>> ssh-add ~/.ssh/id_ed25519
+
+Adding a new SSH key to your account
+>> clip < ~/.ssh/id_ed25519.pub
+This will copy your SSH key 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhiHGrv8DUn41l/m2QDDQllHlR0fjSPQbNXUgNE41EY 56638837+Hacker-BlackHATS@users.noreply.github.com
+
+}
+
+>> git add -A
+-A means we are adding all the files to git
+>> git commit -m "my first commit"
+Commit our changes.
+
+In order to push or pull into the GitHub repository, we have to run two more commands :
+>> git remote add origin https://github.com/Hacker-BlackHATS/Car_Zone-GitProject.git
+>> git push -u origin master
+All our files are pushed into our GitHub Repository.
+
+So now, whenever we change any file,
+for example, lets change some text in home.html.
+templates/pages/home.html:
+
+<h1>HOME PAGE</h1>
+<h4>Hello World Again</h4>
+
+>> git status
+It will show you which file has been modified or created.
+
+Now add these files to the GitHub repository.
+>> git add -A
+>> git commit -m "tested git status"
+>> git push origin master
+
+There is something called .gitignore. In this .gitignore file, we have to add all those files or folders that we don't want to push to the git repository.
+Usually we don't want to push media files like videos,images, etc. because these files are very big in size.
+We create a .gitignore file in the project library directory.
+Go to gitignore.io and type django and click create.
+Copy the content and paste it in .gitignore file and save it.
+
+If you do not want to push media folder, write /media inside .gitignore file and save it.
